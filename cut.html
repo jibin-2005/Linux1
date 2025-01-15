@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cut Command - Linux Commands</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #610000;
+            color: white;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        nav a {
+            margin: 0 1rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        body {
+            padding-top: 70px;
+        }
+        main {
+            padding: 3rem 2rem;
+            text-align: left;
+        }
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1em;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #1e3a5f;
+        }
+        code {
+            background-color: #f1f1f1;
+            padding: 0.2em 0.4em;
+            font-size: 0.9em;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background-color: #f9f9f9;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #610000;
+            color: white;
+        }
+        td {
+            background-color: white;
+        }
+        footer {
+            background-color: #6b0606;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">My Linux</div>
+        <nav>
+            <a href="index.html#home">Home</a>
+            <a href="index.html#commands">Commands</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="content">
+            <h2>Cut Command in Linux with Examples</h2>
+            <p><strong>Last Updated: 12 Jul, 2024</strong></p>
+            <p>The <code>cut</code> command in Linux is used to extract sections from each line of a file and write the result to standard output. It can be used to cut parts of a line by byte position, character, and field.</p>
+
+            <h3>Table of Contents</h3>
+            <ul>
+                <li>Syntax of cut Command</li>
+                <li>Options Available in cut Command</li>
+                <li>Practical Examples of cut Command</li>
+                <li>Frequently Asked Questions on cut Command in Linux</li>
+            </ul>
+
+            <h3 id="syntax">Syntax of cut Command</h3>
+            <p>The basic syntax of the cut command is:</p>
+            <pre><code>cut OPTION... [FILE]...</code></pre>
+            <p>Where:</p>
+            <ul>
+                <li><code>OPTION</code> specifies the desired behavior.</li>
+                <li><code>FILE</code> represents the input file.</li>
+            </ul>
+
+            <h3 id="options">Options Available in cut Command</h3>
+            <p>Here is a list of the most commonly used options with the <code>cut</code> command:</p>
+            <table>
+                <tr>
+                    <th>Option</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>-b, --bytes=LIST</code></td>
+                    <td>Selects only the bytes specified in LIST (e.g., <code>-b 1-3,7</code>).</td>
+                </tr>
+                <tr>
+                    <td><code>-c, --characters=LIST</code></td>
+                    <td>Selects only the characters specified in LIST (e.g., <code>-c 1-3,7</code>).</td>
+                </tr>
+                <tr>
+                    <td><code>-d, --delimiter=DELIM</code></td>
+                    <td>Uses DELIM as the field delimiter character instead of the tab character.</td>
+                </tr>
+                <tr>
+                    <td><code>-f, --fields=LIST</code></td>
+                    <td>Selects only the fields specified in LIST, separated by the delimiter character (default is tab).</td>
+                </tr>
+                <tr>
+                    <td><code>-n</code></td>
+                    <td>Do not split multi-byte characters (no effect unless <code>-b</code> or <code>-c</code> is specified).</td>
+                </tr>
+                <tr>
+                    <td><code>--complement</code></td>
+                    <td>Invert the selection of fields/characters. Print the fields/characters not selected.</td>
+                </tr>
+            </table>
+
+            <h3 id="examples">Practical Examples of cut Command</h3>
+            <h4>Extract Specific Bytes (-b) Using cut Command</h4>
+            <p>To extract specific bytes, use the <code>-b</code> option:</p>
+            <pre><code>cut -b 1,2,3 state.txt</code></pre>
+            <p>Example with a range of bytes:</p>
+            <pre><code>cut -b 1-3,5-7 state.txt</code></pre>
+
+            <h4>Cut by Character (-c) Using cut Command</h4>
+            <p>To cut by character, use the <code>-c</code> option:</p>
+            <pre><code>cut -c 2,5,7 state.txt</code></pre>
+            <p>Example of cutting the first seven characters:</p>
+            <pre><code>cut -c 1-7 state.txt</code></pre>
+
+            <h4>Cut by Field (-f) Using cut Command</h4>
+            <p>To cut by field, use the <code>-f</code> option. If fields are separated by a space, you can also use the <code>-d</code> option:</p>
+            <pre><code>cut -d " " -f 1 state.txt</code></pre>
+
+            <h3 id="frequently-asked">Frequently Asked Questions on cut Command in Linux</h3>
+            <h4>How do I use the cut command to extract specific columns from a file?</h4>
+            <p>Example: To extract the first and third columns from a CSV file named <code>data.csv</code>:</p>
+            <pre><code>cut -d',' -f1,3 data.csv</code></pre>
+
+            <h4>Can I use cut to extract a range of characters from each line?</h4>
+            <p>Yes, you can. To extract characters 5 to 10 from each line of a file named <code>text.txt</code>:</p>
+            <pre><code>cut -c5-10 text.txt</code></pre>
+
+            <img src="https://linuxsimply.com/wp-content/uploads/2023/01/cut-command-in-linux-2.png" alt="cut" width="500" height="300">
+
+            <h3>Conclusion</h3>
+            <p>The <code>cut</code> command in Linux is a versatile tool for extracting specific sections from files based on byte, character, or field. By using different options like <code>-b</code>, <code>-c</code>, and <code>-f</code>, you can slice text and extract exactly what you need.</p>
+        </section>
+    </

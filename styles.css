@@ -1,0 +1,150 @@
+/* General reset and body styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0,10px,0,10px;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Header styles */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #610000;
+    color: white;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+nav a {
+    margin: 0 1rem;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Add padding to prevent content overlap */
+body {
+    padding-top: 70px; /* Adjust for fixed header height */
+}
+
+/* Hero section styles */
+.hero {
+    text-align: center;
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, #690202, #7e0000);
+    color: white;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.hero .btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background-color: #2563eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.hero .btn:hover {
+    background-color: #1d4ed8;
+}
+
+/* Features section */
+section {
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+section h2 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #1e3a5f;
+}
+
+/* Cards */
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.card {
+    display: block;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 250px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 15px rgba(180, 7, 7, 0.2);
+}
+
+.card h3 {
+    margin-top: 0;
+}
+
+.card p {
+    margin: 0.5rem 0 0;
+}
+
+/* Testimonials section */
+.testimonial-gallery {
+    margin-top: 2rem;
+    text-align: left;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+blockquote {
+    background-color: #e5e7eb;
+    padding: 1rem;
+    border-left: 4px solid #8d0202;
+    margin: 1rem 0;
+    font-style: italic;
+}
+
+/* Footer styles */
+footer {
+    background-color: #6b0606;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}

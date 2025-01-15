@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWK Command - Linux Commands</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #610000;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 1em;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        main {
+            padding: 2em;
+        }
+        h2 {
+            text-align: center;
+            color:#610000;
+        }
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1em;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            background-color: #f1f1f1;
+            padding: 0.2em 0.4em;
+            font-size: 0.9em;
+            border-radius: 4px;
+        }
+        footer {
+            background-color: #610000; /* Changed to match the first shared HTML code */
+            color: white;
+            text-align: center;
+            padding: 1em;
+            position: relative; /* Changed from absolute to relative */
+            width: 100%;
+            margin-top: 2em; /* Added margin to push it below the content */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1em 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">My Linux</div>
+        <nav>
+            <a href="index.html#home">Home</a>
+            <a href="index.html#commands">Commands</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="content">
+            <h2>AWK Command in Linux with Examples</h2>
+            <p><strong>Last Updated: 15 Jan, 2025</strong></p>
+            <p>The <code>AWK</code> command in Linux is a versatile scripting language used for text processing, data extraction, and report generation. It scans files line by line, matches patterns, and performs actions on matched lines.</p>
+
+            <h3>Table of Contents</h3>
+            <ul>
+                <li>Introduction to AWK</li>
+                <li>Syntax and Options</li>
+                <li>Built-in Variables</li>
+                <li>Examples of AWK Commands</li>
+                <li>Frequently Asked Questions</li>
+            </ul>
+
+            <h3 id="introduction">Introduction to AWK</h3>
+            <p>AWK is named after its creators: Alfred Aho, Peter Weinberger, and Brian Kernighan. It enables programmers to write concise and effective scripts for:</p>
+            <ul>
+                <li>Scanning a file line by line</li>
+                <li>Splitting lines into fields</li>
+                <li>Comparing lines or fields to patterns</li>
+                <li>Performing actions on matched lines</li>
+            </ul>
+
+            <h3 id="syntax">Syntax and Options</h3>
+            <p>The basic syntax of the AWK command is:</p>
+            <pre><code>awk [options] 'pattern { action }' input-file > output-file</code></pre>
+            <p>Commonly used options include:</p>
+            <table>
+                <tr>
+                    <th>Option</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>-f program-file</code></td>
+                    <td>Reads the AWK program source from the specified file.</td>
+                </tr>
+                <tr>
+                    <td><code>-F fs</code></td>
+                    <td>Specifies the field separator (default is whitespace).</td>
+                </tr>
+            </table>
+
+            <h3 id="variables">Built-in Variables</h3>
+            <p>AWK provides several built-in variables for efficient text processing:</p>
+            <table>
+                <tr>
+                    <th>Variable</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>NR</code></td>
+                    <td>Current record number (line number).</td>
+                </tr>
+                <tr>
+                    <td><code>NF</code></td>
+                    <td>Number of fields in the current record.</td>
+                </tr>
+                <tr>
+                    <td><code>FS</code></td>
+                    <td>Field separator (default is whitespace).</td>
+                </tr>
+                <tr>
+                    <td><code>OFS</code></td>
+                    <td>Output field separator.</td>
+                </tr>
+                <tr>
+                    <td><code>ORS</code></td>
+                    <td>Output record separator (default is newline).</td>
+                </tr>
+            </table>
+
+            <h3 id="examples">Examples of AWK Commands</h3>
+            <h4>1. Print All Lines</h4>
+            <pre><code>awk '{print}' employee.txt</code></pre>
+            <p>Output:</p>
+            <pre><code>ajay manager account 45000
+sunil clerk account 25000
+...</code></pre>
+
+            <h4>2. Print Lines Matching a Pattern</h4>
+            <pre><code>awk '/manager/ {print}' employee.txt</code></pre>
+            <p>Output:</p>
+            <pre><code>ajay manager account 45000
+varun manager sales 50000
+...</code></pre>
+
+            <h4>3. Print Specific Fields</h4>
+            <pre><code>awk '{print $1, $4}' employee.txt</code></pre>
+            <p>Output:</p>
+            <pre><code>ajay 45000
+sunil 25000
+...</code></pre>
+
+            <h4>4. Display Line Numbers</h4>
+            <pre><code>awk '{print NR, $0}' employee.txt</code></pre>
+            <p>Output:</p>
+            <pre><code>1 ajay manager account 45000
+2 sunil clerk account 25000
+...</code></pre>
+
+            <h3 id="faq">Frequently Asked Questions</h3>
+            <h4>What is the AWK command used for?</h4>
+            <p>AWK is used for text processing, including pattern matching, data extraction, and report generation.</p>
+
+            <h4>What does <code>awk '{ print $1 }'</code> do?</h4>
+            <p>It prints the first field of each line from the input file.</p>
+
+            <h4>What is the full form of AWK?</h4>
+            <p>AWK is named after its developers: Aho, Weinberger, and Kernighan.</p>
+
+            <img src="https://phoenixnap.com/kb/wp-content/uploads/2021/10/using-awk-to-count-character-number.png" alt="awk" width="500" height="300">
+
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Jibin Thomas. All rights reserved.</p>
+    </footer>
+</body>
+</html>

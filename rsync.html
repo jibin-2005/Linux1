@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rsync Command - Linux Commands</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #610000;
+            color: white;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav a {
+            margin: 0 1rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        body {
+            padding-top: 70px; /* Adjust for fixed header height */
+        }
+
+        main {
+            padding: 3rem 2rem;
+            text-align: left;
+        }
+
+        #rsync-details {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 3rem auto;
+        }
+
+        #rsync-details h2 {
+            font-size: 2rem;
+            color: #1e3a5f;
+            margin-bottom: 1rem;
+        }
+
+        #rsync-details h3 {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        #rsync-details p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        #rsync-details ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #rsync-details ul li {
+            margin-bottom: 1rem;
+        }
+
+        #rsync-details code {
+            background-color: #f4f4f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 5px;
+            color: #610000;
+            font-family: monospace;
+        }
+
+        pre {
+            background-color: #f4f4f9;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        footer {
+            background-color: #6b0606;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">My Linux</div>
+        <nav>
+            <a href="index.html#home">Home</a>
+            <a href="index.html#commands">Commands</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="rsync-details">
+            <h2>rsync Command in Linux with Examples</h2>
+            <p>Last Updated: 31 Jul, 2023</p>
+            <p>rsync or remote synchronization is a software utility for Unix-like systems that efficiently syncs files and directories between two hosts or machines. One is the source or the local-host from which the files will be synced, and the other is the remote-host, on which synchronization will take place. There are basically two ways in which rsync can copy/sync data:</p>
+            <ul>
+                <li>Copying/syncing to/from another host over any remote shell like ssh, rsh.</li>
+                <li>Copying/Syncing through rsync daemon using TCP.</li>
+            </ul>
+            <p>Rsync is famous for its delta-transfer algorithm, in which it copies only the differences between the source files present in the local-host and the existing files in the destination or the remote host.</p>
+            
+            <h3>Example:</h3>
+            <pre><code>rsync local-file user@remote-host:remote-file</code></pre>
+            <p><b>What Happens Here:</b></p>
+            <p>Rsync will first use SSH to connect as the user to remote-host and will ask for the user's password. Once connected, it will invoke the remote host’s rsync, and then the two programs will determine what parts of the local-file need to be copied so that the remote file matches the local one. Please note the following behavior of rsync:</p>
+            <ul>
+                <li>Files that do not exist on the remote-host are copied.</li>
+                <li>Files that have been updated will be synced, rsync will copy only the changed parts of files to the remote host.</li>
+                <li>Files that are exactly the same are not copied to the remote host.</li>
+            </ul>
+
+            <h3>Syntax of <code>rsync</code> command in Linux</h3>
+            <pre><code>rsync [options] source [destination]</code></pre>
+
+            <h3>Options available in <code>rsync</code> command in Linux</h3>
+            <table>
+                <tr>
+                    <th>Options</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>-a, –archive</code></td>
+                    <td>This is equivalent to using <code>-rlptgoD</code>. Archive mode includes all the necessary options like copying files recursively, preserving almost everything (like symbolic links, file permissions, user & group ownership, and timestamps).</td>
+                </tr>
+                <tr>
+                    <td><code>-v, –verbose</code></td>
+                    <td>By default, rsync operates silently. Using a single “<code>-v</code>” option provides information on transferred files and a summary at the end. Adding two “<code>-v</code>” options gives status updates on delta-transmission and skipped files, along with more information at the end. Multiple “<code>-v</code>” options are typically used for debugging rsync.</td>
+                </tr>
+                <tr>
+                    <td><code>-h, –human-readable</code></td>
+                    <td>Outputs in a human-readable format.</td>
+                </tr>
+                <tr>
+                    <td><code>-z, –compress</code></td>
+                    <td>Compress file data during the transfer.</td>
+                </tr>
+            </table>
+
+            <h3>Examples</h3>
+            <h4>Using <code>rsync</code> as a list command</h4>
+            <p>If only the source path is specified, the contents of the source are listed in an output format similar to <code>ls -l</code>.</p>
+            <pre><code>rsync foo/</code></pre>
+            <p>The above command will list the files and directories present in the directory <code>foo</code>.</p>
+
+            <h4>Copy/Sync files and directory locally</h4>
+            <p>If neither the source nor destination path specifies a remote host, the rsync commands behave as a copy command.</p>
+            <pre><code>rsync -avh foo/ bar/</code></pre>
+            <p>The above command will copy/sync all the files and directories present in directory <code>foo</code> to directory <code>bar</code>. If the destination directory is not present (here <code>bar</code>), rsync automatically creates one and copies all the data in it.</p>
+
+            <h4>Rsync using ssh</h4>
+            <p>There are two different ways for rsync to contact a remote system:</p>
+            <ul>
+                <li>Using a remote-shell program as the transport (such as ssh (Secure Shell) or rsh (Remote Shell)).</li>
+                <li>Contacting an rsync daemon directly via TCP.</li>
+            </ul>
+            <p>Here we will be discussing rsync over ssh.</p>
+            <pre><code>rsync -avhze ssh /foo user@remote-host:/tmp/</code></pre>
+            <p>To specify the type of protocol to be used, <code>-e</code> option</p>
+            <img src="https://phoenixnap.com/kb/wp-content/uploads/2024/09/multiple-directories-rsync-remote-to-local.png" alt="rsync height="300">

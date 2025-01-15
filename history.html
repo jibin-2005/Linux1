@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History Command - Linux Commands</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #610000;
+            color: white;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav a {
+            margin: 0 1rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        body {
+            padding-top: 70px; /* Adjust for fixed header height */
+        }
+
+        main {
+            padding: 3rem 2rem;
+            text-align: left;
+        }
+
+        #history-details {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 3rem auto;
+        }
+
+        #history-details h2 {
+            font-size: 2rem;
+            color: #1e3a5f;
+            margin-bottom: 1rem;
+        }
+
+        #history-details h3 {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        #history-details p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        #history-details ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #history-details ul li {
+            margin-bottom: 1rem;
+        }
+
+        #history-details code {
+            background-color: #f4f4f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 5px;
+            color: #610000;
+            font-family: monospace;
+        }
+
+        pre {
+            background-color: #f4f4f9;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        footer {
+            background-color: #6b0606;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">My Linux</div>
+        <nav>
+            <a href="index.html#home">Home</a>
+            <a href="index.html#commands">Commands</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="history-details">
+            <h2>How to Display Command History in Linux | history Command</h2>
+            <p>Last Updated: 19 Jan, 2024</p>
+            <p>The command-line interface in Linux provides powerful tools for users, and mastering command history is essential for efficient navigation and retrieval of previously executed commands. The <code>history</code> command is a valuable utility that allows users to view and search through their command history. In this comprehensive guide, we will explore the various features of the history command, enabling users to streamline their workflow and save time by efficiently accessing and reusing commands.</p>
+            
+            <h3>Understanding the <code>history</code> Command:</h3>
+            <p>The <code>history</code> command in Linux provides a chronological list of previously executed commands, along with corresponding command numbers. This feature allows users to recall, reuse, and modify commands without having to retype them. The command history is stored in a file, typically <code>~/.bash_history</code> for the Bash shell.</p>
+
+            <h3>Table of Content</h3>
+            <ul>
+                <li>How to Display Command history in Linux</li>
+                <li>Display a Limited Number of Commands History</li>
+                <li>Execute a Command by Event Number</li>
+                <li>Print Command Before Execution History</li>
+                <li>Search Command History with grep</li>
+                <li>View the Most Recent Command History</li>
+                <li>Execute a Command without Storing History</li>
+                <li>Execute a Command using a Part of the Command History</li>
+                <li>Remove a Specific Command from History</li>
+                <li>Clear Entire Command History</li>
+                <li>View the Last 10 Commands History</li>
+            </ul>
+
+            <h3 id="display-history">How to Display Command history in Linux</h3>
+            <p>To view the command history, simply type:</p>
+            <pre><code>history</code></pre>
+            <p>Here, the number (termed as event number) preceded before each command depends on the system. You may get different numbers while executing on your own system.</p>
+
+            <h3 id="limited-history">Display a Limited Number of Commands History</h3>
+            <p>To show the limited number of commands that executed previously, type:</p>
+            <pre><code>history 5</code></pre>
+            <p>This command displays the last 5 commands from the command history.</p>
+
+            <h3 id="execute-event">Execute a Command by Event Number</h3>
+            <p>Execute a command using its event number with the <code>!</code> symbol. For instance:</p>
+            <pre><code>!1997</code></pre>
+            <p>This will rerun the command with event number 1997.</p>
+
+            <h3 id="print-before">Print Command Before Execution History</h3>
+            <p>To print a command before executing it to avoid errors, use the <code>:p</code> option after the event number. Example:</p>
+            <pre><code>!1997:p</code></pre>
+            <p>This will display the command associated with event number 1997 without executing it.</p>
+
+            <h3 id="search-history">Search Command History with grep</h3>
+            <p>Combine the <code>history</code> command with <code>grep</code> for efficient searching. Example:</p>
+            <pre><code>history | grep chpasswd</code></pre>
+            <p>This command filters and displays only the commands containing the term “chpasswd.”</p>
+
+            <h3 id="recent-history">View the Most Recent Command History</h3>
+            <p>To quickly view and rerun the most recent command, use:</p>
+            <pre><code>!!</code></pre>
+            <p>This will rerun the last executed command.</p>
+
+            <h3 id="execute-without-storing">Execute a Command without Storing History</h3>
+            <p>If a command needs to be executed without being stored in history, unset the <code>HISTFILE</code> variable. Example:</p>
+            <pre><code>unset HISTFILE</code></pre>
+            <p>This ensures that the command won’t be stored in the history file.</p>
+
+            <h3 id="execute-part">Execute a Command using a Part of the Command History</h3>
+            <p>Execute a command using a part of its string. Example:</p>
+            <pre><code>!command_starting_string</code></pre>
+            <p>This will execute the latest command starting with “command_starting_string.”</p>
+
+            <h3 id="remove-specific">Remove a Specific Command from History</h3>
+            <p>Remove a specific command from history using the <code>history -d</code> option. Example:</p>
+            <pre><code>history -d 1996</code></pre>
+            <p>This command removes the command with event number 1996 from history.</p>
+
+            <h3 id="clear-history">Clear Entire Command History</h3>
+            <p>Clear the entire command history using the <code>history -c</code> option. Example:</p>
+            <pre><code>history -c</code></pre>
+            <p>Be cautious, as this action irreversibly removes[_{{{CITATION{{{_1{](https://github.com/buribalazs/smooth-drag-order/tree/7b40d21d076c3e31765f61481f537beaf4c5ec9f/README.md)[_{{{CITATION{{{_2{](https://github.com/StealthAdder/Loan-Management-system/tree/6dba1a832faee3a3303392cf333938bae29699c9/auth%2Fhome%2Fall_payts.php)</p>
+                <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20220805162422/linux.png" alt="history"500" height="300">

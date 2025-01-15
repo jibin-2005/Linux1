@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen Command - Linux Commands</title>
+    <style>
+        /* General reset and body styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        /* Header styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #610000;
+            color: white;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav a {
+            margin: 0 1rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Add padding to prevent content overlap */
+        body {
+            padding-top: 70px; /* Adjust for fixed header height */
+        }
+
+        /* Main content section */
+        main {
+            padding: 3rem 2rem;
+            text-align: left;
+        }
+
+        /* Screen details section */
+        #screen-details {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 3rem auto;
+        }
+
+        #screen-details h2 {
+            font-size: 2rem;
+            color: #1e3a5f;
+            margin-bottom: 1rem;
+        }
+
+        #screen-details h3 {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        #screen-details p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        #screen-details ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #screen-details ul li {
+            margin-bottom: 1rem;
+        }
+
+        #screen-details code {
+            background-color: #f4f4f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 5px;
+            color: #610000;
+            font-family: monospace;
+        }
+
+        pre {
+            background-color: #f4f4f9;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #6b0606;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">My Linux</div>
+        <nav>
+            <a href="index.html#home">Home</a>
+            <a href="index.html#commands">Commands</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="screen-details">
+            <h2>Screen Command in Linux with Examples</h2>
+            <p>Last Updated: 12 Jul, 2024</p>
+            <p>The <code>screen</code> command in Linux provides the ability to launch and use multiple shell sessions from a single ssh session. When a process is started with ‘screen’, the process can be detached from the session and then can reattach the session at a later time. When the session is detached, the process that was originally started from the screen is still running and managed by the screen itself. The process can then re-attach the session at a later time, and the terminals are still there, the way it was left.</p>
+
+            <h3>Syntax:</h3>
+            <pre><code>screen [-opts] [cmd [args]]</code></pre>
+
+            <h3>Options:</h3>
+            <ul>
+                <li><code>-a</code>: It forces all capabilities into each window’s termcap.</li>
+                <li><code>-A -[r|R]</code>: It adapts all windows to the new display width & height.</li>
+                <li><code>-c file</code>: It reads configuration file instead of ‘.screenrc’.</li>
+                <li><code>-d (-r)</code>: It detaches the elsewhere running screen (and reattach here).</li>
+                <li><code>-dmS name</code>: It starts as daemon: Screen session in detached mode.</li>
+                <li><code>-D (-r)</code>: It detaches and logs out remote (and reattach here).</li>
+                <li><code>-D -RR</code>: It does whatever is needed to get a screen session.</li>
+                <li><code>-e xy</code>: It changes the command characters.</li>
+                <li><code>-f</code>: It makes the flow control on, -fn = off, -fa = auto.</li>
+                <li><code>-h lines</code>: It sets the size of the scrollback history buffer.</li>
+                <li><code>-i</code>: It interrupts output sooner when flow control is on.</li>
+                <li><code>-l</code>: It makes the login mode on (update /var/run/utmp), -ln = off.</li>
+                <li><code>-ls [match]</code>: It displays all the attached screens.</li>
+                <li><code>-L</code>: It turns on output logging.</li>
+                <li><code>-m</code>: It ignores $STY variable, do create a new screen session.</li>
+                <li><code>-O</code>: It chooses optimal output rather than exact vt100 emulation.</li>
+                <li><code>-p window</code>: It preselects the named window if it exists.</li>
+                <li><code>-q</code>: It quiets startup. Exits with non-zero return code if unsuccessful.</li>
+                <li><code>-Q</code>: Its commands will send the response to the stdout of the querying process.</li>
+                <li><code>-r [session]</code>: It reattaches to a detached screen process.</li>
+                <li><code>-R</code>: It reattaches if possible, otherwise starts a new session.</li>
+                <li><code>-S sockname</code>: It names this session .sockname instead of …</li>
+                <li><code>-t title</code>: It sets title (window’s name).</li>
+                <li><code>-T term</code>: It uses term as $TERM for windows, rather than “screen”.</li>
+                <li><code>-U</code>: It tells screen to use UTF-8 encoding.</li>
+                <li><code>-v</code>: It prints “Screen version 4.06.02 (GNU) 23-Oct-17”.</li>
+                <li><code>-x</code>: It attaches to a not detached screen (Multi display mode).</li>
+                <li><code>-X</code>: It executes as a screen command in the specified session.</li>
+            </ul>
+
+            <h3>Shortcut keys Options:</h3>
+            <ul>
+                <li><code>Ctrl-a + c</code>: It creates a new window.</li>
+                <li><code>Ctrl-a + w</code>: It displays the list of all the windows currently opened.</li>
+                <li><code>Ctrl-a + A</code>: It renames the current window. The name will appear when you list the list of windows opened with <code>Ctrl-a + w</code>.</li>
+                <li><code>Ctrl-a + n</code>: It goes to the next window.</li>
+                <li><code>Ctrl-a + p</code>: It goes to the previous window.</li>
+                <li><code>Ctrl-a + Ctrl-a</code>: It goes back to the last window used.</li>
+                <li><code>Ctrl-a + k</code>: It closes the current window (kill).</li>
+                <li><code>Ctrl-a + S</code>: It splits the current window horizontally. To switch between the windows, do <code>Ctrl-a + Tab</code>.</li>
+                <li><code>Ctrl-a + |</code>: It splits the current window vertically.</li>
+                <li><code>Ctrl-a + X</code>: Closes active split window.</li>
+                <li><code>Ctrl-a + Q</code>: Closes all split windows.</li>
+                <li><code>Ctrl-a + d</code>: It detaches a screen session without stopping it.</li>
+                <li><code>Ctrl-a + r</code>: It reattaches a[_{{{CITATION{{{_1{](https://github.com/Borosan/lpic1book/tree/18770c8fc59bd3327903c6ec85603c526d3dec15/1035-create-monitor-and-kill-processes.md)</li>
+                    <img src="https://files.codingninjas.in/article_images/linux-screen-command-5-1667122685.webp" alt=screen"500" height="300">

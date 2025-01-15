@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sed Command - Linux Commands</title>
+    <style>
+        /* General reset and body styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        /* Header styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #6b0606;
+            color: white;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav a {
+            margin: 0 1rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Add padding to prevent content overlap */
+        body {
+            padding-top: 70px; /* Adjust for fixed header height */
+        }
+
+        /* Main content section */
+        main {
+            padding: 3rem 2rem;
+            text-align: left;
+        }
+
+        /* Command details section */
+        #sed-details {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 3rem auto;
+        }
+
+        #sed-details h2 {
+            font-size: 2rem;
+            color: #6b0606;
+            margin-bottom: 1rem;
+        }
+
+        #sed-details h3 {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        #sed-details p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        #sed-details ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #sed-details ul li {
+            margin-bottom: 1rem;
+        }
+
+        #sed-details code {
+            background-color: #f4f4f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 5px;
+            color: #6b0606;
+            font-family: monospace;
+        }
+
+        pre {
+            background-color: #f4f4f9;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #6b0606; /* Changed to match the previous code */
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">My Linux</div>
+        <nav>
+            <a href="index.html#Home">Home</a>
+            <a href="index.html#commands">Commands</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="sed-details">
+            <h2>Sed Command</h2>
+            <p>The <code>sed</code> (Stream Editor) command in Unix/Linux is a powerful utility used to process and manipulate text in files. It can perform operations like searching, find-and-replace, insertion, and deletion, making it an efficient tool for text management tasks.</p>
+
+            <h3>Description:</h3>
+            <p><code>sed</code> allows you to manipulate text directly in files or streams without opening them in an editor. It supports regular expressions, enabling complex pattern matching and automated edits.</p>
+
+            <h3>Syntax:</h3>
+            <pre><code>sed [OPTIONS] 'SCRIPT' [INPUTFILE...]</code></pre>
+
+            <h3>Commonly Used Options:</h3>
+            <ul>
+                <li><code>-i</code>: Edit the file in place without printing to the console.</li>
+                <li><code>-n</code>: Suppress automatic printing of lines.</li>
+                <li><code>-e</code>: Execute multiple commands.</li>
+                <li><code>-f</code>: Read commands from a file.</li>
+                <li><code>-r</code>: Enable extended regular expressions.</li>
+            </ul>
+
+            <h3>Examples:</h3>
+
+            <h4>1. Replacing or Substituting Strings:</h4>
+            <p>Replace the first occurrence of "unix" with "linux":</p>
+            <pre><code>sed 's/unix/linux/' geekfile.txt</code></pre>
+            <p>Output:</p>
+            <pre>
+linux is great os. unix is opensource. unix is free os.
+learn operating system.
+linux linux which one you choose.
+linux is easy to learn.unix is a multiuser os.Learn unix .unix is a powerful.
+            </pre>
+
+            <h4>2. Replace All Occurrences:</h4>
+            <p>Use the <code>/g</code> flag for global replacement:</p>
+            <pre><code>sed 's/unix/linux/g' geekfile.txt</code></pre>
+
+            <h4>3. Replace on Specific Line:</h4>
+            <p>Replace "unix" with "linux" only on the third line:</p>
+            <pre><code>sed '3 s/unix/linux/' geekfile.txt</code></pre>
+
+            <h4>4. Deleting Lines:</h4>
+            <ul>
+                <li>Delete the 5th line: <code>sed '5d' geekfile.txt</code></li>
+                <li>Delete lines from 3 to 6: <code>sed '3,6d' geekfile.txt</code></li>
+                <li>Delete lines containing "abc": <code>sed '/abc/d' geekfile.txt</code></li>
+            </ul>
+
+            <h4>5. Using Multiple Commands:</h4>
+            <p>Combine commands with <code>-e</code>:</p>
+            <pre><code>sed -e 's/unix/linux/' -e '/opensource/d' geekfile.txt</code></pre>
+
+            <img src="https://img.php.cn/upload/article/000/887/227/170450433241891.png" alt="sed" width="500" height="300">
+
+            <h3>Conclusion:</h3>
+            <p>The <code>sed</code> command is a versatile and powerful tool for text processing, enabling efficient automation of editing tasks for files and streams.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Jibin Thomas. All rights reserved.</p>
+    </footer>
+</body>
+</html>

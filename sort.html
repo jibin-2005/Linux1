@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort Command - Linux Commands</title>
+    <style>
+        /* General reset and body styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        /* Header styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #610000;
+            color: white;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav a {
+            margin: 0 1rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Add padding to prevent content overlap */
+        body {
+            padding-top: 70px; /* Adjust for fixed header height */
+        }
+
+        /* Main content section */
+        main {
+            padding: 3rem 2rem;
+            text-align: left;
+        }
+
+        /* Sort details section */
+        #sort-details {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 3rem auto;
+        }
+
+        #sort-details h2 {
+            font-size: 2rem;
+            color: #1e3a5f;
+            margin-bottom: 1rem;
+        }
+
+        #sort-details h3 {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        #sort-details p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        #sort-details ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #sort-details ul li {
+            margin-bottom: 1rem;
+        }
+
+        #sort-details code {
+            background-color: #f4f4f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 5px;
+            color: #610000;
+            font-family: monospace;
+        }
+
+        pre {
+            background-color: #f4f4f9;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #6b0606;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">My Linux</div>
+        <nav>
+            <a href="index.html#home">Home</a>
+            <a href="index.html#commands">Commands</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="sort-details">
+            <h2>Sort Command</h2>
+            <p>The <code>sort</code> command is used to arrange the contents of a text file or input in a specified order, either ascending or descending, alphabetically or numerically.</p>
+            
+            <h3>Description:</h3>
+            <p>The <code>sort</code> command is typically used in Linux and Unix-based systems to sort text files in a particular order. By default, it sorts lines in ascending order based on ASCII value. The <code>sort</code> command has multiple options and is highly customizable depending on the type of data being sorted (e.g., numerical, alphabetic, reverse order, etc.).</p>
+
+            <h3>Syntax:</h3>
+            <pre><code>sort [options] [file(s)]</code></pre>
+
+            <h3>Usage Examples:</h3>
+            <ul>
+                <li><b>Sort Alphabetically:</b> <code>sort file.txt</code></li>
+                <li><b>Sort Numerically:</b> <code>sort -n file.txt</code></li>
+                <li><b>Sort in Reverse Order:</b> <code>sort -r file.txt</code></li>
+                <li><b>Sort Based on Specific Column:</b> <code>sort -k 3 employee_data.txt</code></li>
+                <li><b>Sort and Remove Duplicates:</b> <code>sort -u file.txt</code></li>
+            </ul>
+
+            <h3>Commonly Used Options:</h3>
+            <ul>
+                <li><code>-o</code>: Specifies the output file for sorted data. <code>sort -o output.txt input.txt</code></li>
+                <li><code>-n</code>: Sorts data numerically. <code>sort -n numbers.txt</code></li>
+                <li><code>-r</code>: Sorts data in reverse order (descending). <code>sort -r file.txt</code></li>
+                <li><code>-k</code>: Sorts based on a specific column. <code>sort -k 2 file.txt</code></li>
+                <li><code>-u</code>: Removes duplicate lines. <code>sort -u file.txt</code></li>
+                <li><code>-M</code>: Sorts by month names. <code>sort -M month_list.txt</code></li>
+            </ul>
+
+            <h3>Example - Sorting Numerical Data:</h3>
+            <pre>
+Input:
+  5
+  2
+  8
+  1
+
+Command: <code>sort -n</code>
+
+Output:
+  1
+  2
+  5
+  8
+            </pre>
+
+            <h3>Sorting with Mixed Case:</h3>
+            <p>By default, uppercase letters are sorted before lowercase letters. You can use the <code>-f</code> option to sort without considering case (case-insensitive sorting).</p>
+
+            <h3>Example - Case-Insensitive Sort:</h3>
+            <pre>
+Input:
+  Banana
+  apple
+  Cherry
+  apple
+
+Command: <code>sort -f</code>
+
+Output:
+  apple
+  apple
+  Banana
+  Cherry
+            </pre>
+
+            <h3>Sorting Based on Specific Column:</h3>
+            <p>You can sort data based on specific columns using the <code>-k</code> option. This is useful for sorting structured data like CSV or TSV files.</p>
+
+            <h3>Example - Sorting by Column 2:</h3>
+            <pre>
+Input (employee_data.txt):
+  Name, Age, Department
+  Alice, 30, HR
+  Bob, 25, IT
+  Charlie, 35, Marketing
+
+Command: <code>sort -t, -k2 employee_data.txt</code>
+
+Output:
+  Bob, 25, IT
+  Alice, 30, HR
+  Charlie, 35, Marketing
+            </pre>
+
+            <h3>Sorting Files and Directories:</h3>
+            <p>You can also use the <code>sort</code> command to sort the list of files and directories in a specific order.</p>
+
+            <h3>Example - Sorting Files by Name:</h3>
+            <pre>
+Command: <code>ls | sort</code>
+
+Output:
+  a.txt
+  b.txt
+  c.txt
+            </pre>
+
+            <h3>Advanced Sorting - Multiple Keys:</h3>
+            <p>Sort data based on multiple columns using the <code>-k</code> option. For example, sorting by both last name and first name in a list of names.</p>
+
+            <h3>Example - Sorting by Multiple Columns:</h3>
+            <pre>
+Input (names.txt):
+  Alice, Johnson
+  Bob, Smith
+  Charlie, Brown
+
+Command: <code>sort -t, -k2,2 -k1,1 names.txt</code>
+
+Output:
+  Charlie, Brown
+  Alice, Johnson
+  Bob, Smith
+            </pre>
+
+            <h3>Additional Options:</h3>
+            <ul>
+                <li><code>-b</code>: Ignores leading spaces.</li>
+                <li><code>-f</code>: Ignores case when sorting.</li>
+                <li><code>-t</code>: Specifies a custom delimiter (e.g., for CSV or TSV files).</li>
+                <li><code>-c</code>: Checks whether the input is already sorted.</li>
+            </ul>
+
+            <img src="https://linuxsimply.com/wp-content/uploads/2023/01/sort-command-in-linux-8.png" alt="sorting" width="500" height="300">
+
+            <h3>Conclusion:</h3>
+            <p>The <code>sort</code> command is a versatile and powerful tool in the Linux/Unix toolkit. It can be used to sort text files, numeric data, and even directories, making it an essential tool for anyone working with large datasets or performing data manipulation tasks.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Jibin Thomas. All rights reserved.</p>
+    </footer>
+</body>
+</html>

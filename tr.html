@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tr Command - Linux Commands</title>
+    <style>
+        /* General reset and body styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        /* Header styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #610000;
+            color: white;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav a {
+            margin: 0 1rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Add padding to prevent content overlap */
+        body {
+            padding-top: 70px; /* Adjust for fixed header height */
+        }
+
+        /* Main content section */
+        main {
+            padding: 3rem 2rem;
+            text-align: left;
+        }
+
+        /* tr details section */
+        #tr-details {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 3rem auto;
+        }
+
+        #tr-details h2 {
+            font-size: 2rem;
+            color: #1e3a5f;
+            margin-bottom: 1rem;
+        }
+
+        #tr-details h3 {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        #tr-details p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        #tr-details ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #tr-details ul li {
+            margin-bottom: 1rem;
+        }
+
+        #tr-details code {
+            background-color: #f4f4f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 5px;
+            color: #610000;
+            font-family: monospace;
+        }
+
+        pre {
+            background-color: #f4f4f9;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #6b0606;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">My Linux</div>
+        <nav>
+            <a href="index.html#home">Home</a>
+            <a href="index.html#commands">Commands</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="tr-details">
+            <h2>tr Command in Unix/Linux with Examples</h2>
+            <p><b>Last Updated:</b> 12 Jul, 2024</p>
+            <p>The <code>tr</code> command is a UNIX command-line utility for translating or deleting characters. It supports a range of transformations including uppercase to lowercase, squeezing repeating characters, deleting specific characters, and basic find and replace. It can be used with UNIX pipes to support more complex translation. <code>tr</code> stands for translate.</p>
+
+            <h3>Syntax:</h3>
+            <pre><code>$ tr [OPTION] SET1 [SET2]</code></pre>
+
+            <h3>Options:</h3>
+            <ul>
+                <li><code>-c</code>: Complements the set of characters in string, i.e., operations apply to characters not in the given set.</li>
+                <li><code>-d</code>: Deletes characters in the first set from the output.</li>
+                <li><code>-s</code>: Replaces repeated characters listed in the set1 with a single occurrence.</li>
+                <li><code>-t</code>: Truncates set1.</li>
+            </ul>
+
+            <h3>Sample Commands:</h3>
+            <ol>
+                <li>
+                    <b>Convert lower case characters to upper case:</b>
+                    <pre>
+$ cat greekfile
+Output:
+
+WELCOME TO 
+GeeksforGeeks
+$ cat greekfile | tr [a-z] [A-Z]
+Output:
+
+WELCOME TO
+GEEKSFORGEEKS
+                    </pre>
+                    <pre>
+$ cat greekfile | tr [:lower:] [:upper:]
+Output:
+
+WELCOME TO
+GEEKSFORGEEKS
+                    </pre>
+                    <p>Alternatively, you can provide input for the <code>tr</code> command using redirection:</p>
+                    <pre>
+$ tr [:lower:] [:upper:] <greekfile
+Output:
+
+WELCOME TO
+GEEKSFORGEEKS
+                    </pre>
+                </li>
+
+                <li>
+                    <b>Translate white-space characters to tabs:</b>
+                    <pre>
+$ echo "Welcome To GeeksforGeeks" | tr [:space:] "\t"
+Output:
+
+Welcome    To    GeeksforGeeks
+                    </pre>
+                    <p>Using redirection to provide input for <code>tr</code>:</p>
+                    <pre>
+$ tr [:space:] "\t" <<< "Welcome To GeeksforGeeks"
+Output:
+
+Welcome    To    GeeksforGeeks
+                    </pre>
+                </li>
+
+                <li>
+                    <b>Translate braces into parentheses:</b>
+                    <pre>
+$ cat greekfile
+Output:
+
+{WELCOME TO} 
+GeeksforGeeks
+$ tr "{}" "()" <greekfile >newfile.txt
+Output:
+
+(WELCOME TO) 
+GeeksforGeeks
+                    </pre>
+                    <p>The above command will read each character from "greekfile", translate if it is a brace, and write the output to "newfile.txt".</p>
+                </li>
+
+                <li>
+                    <b>Squeeze a sequence of repetitive characters using <code>-s</code> option:</b>
+                    <pre>
+$ echo "Welcome    To    GeeksforGeeks" | tr -s " "
+Output:
+
+Welcome To GeeksforGeeks
+                    </pre>
+                    <p>Using a string here:</p>
+                    <pre>
+$ tr -s " " <<< "Welcome    To    GeeksforGeeks"
+Output:
+
+Welcome To GeeksforGeeks
+                    </pre>
+                </li>
+
+                <li>
+                    <b>Delete specified characters using <code>-d</code> option:</b>
+                    <pre>
+$ echo "Welcome To GeeksforGeeks" | tr -d W
+Output:
+
+elcome To GeeksforGeeks
+                    </pre>
+                    <p>Or equivalently use:</p>
+                    <pre>
+$ tr -d W <<< "Welcome to GeeksforGeeks"
+Output:
+
+elcome To GeeksforGeeks
+                    </pre>
+                </li>
+
+                <li>
+                    <b>Remove all the digits from the string:</b>
+                    <pre>
+$ echo "my ID is 73535" | tr -d [:digit:]
+Output:
+
+my ID is
+                    </pre>
+                    <p>Or:</p>
+                    <pre>
+$ tr -d [:digit:] <<< "my ID is 73535"
+Output:
+
+my ID is
+                    </pre>
+                </li>
+
+                <li>
+                    <b>Complement the sets using <code>-c</code> option:</b>
+                    <pre>
+$ echo "my ID is 73535" | tr -cd [:digit:]
+Output:
+
+73535
+                    </pre>
+                    <p>Or:</p>
+                    <pre>
+$ tr -cd [:digit:] <<< "my ID is 73535"
+Output:
+
+73535
+                    </pre>
+                </li>
+            </ol>
+
+            <h3>FAQs</h3>
+            <p><b>What is the tr command in Unix?</b></p>
+            <p>The <code>tr</code> command in Unix is used for translating or deleting characters from standard input and writing the result to standard output. It is commonly used for text processing tasks such as converting case, deleting characters, and squeezing repeated characters.</p>
+
+            <p><b>What is tr for Linux?</b></p>
+            <p>In Linux, the <code>tr</code> command is a utility for translating or deleting characters. It is used to replace, remove, or compress sequences of characters in a stream.</p>
+            <img src="https://images.javatpoint.com/linux/images/linux-tr-filter3.png" alt="tr" width="500" height="300">
+
+            
+
+               

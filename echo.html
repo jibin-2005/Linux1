@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echo Command - Linux Commands</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #610000;
+            color: white;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav a {
+            margin: 0 1rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        body {
+            padding-top: 70px; /* Adjust for fixed header height */
+        }
+
+        main {
+            padding: 3rem 2rem;
+            text-align: left;
+        }
+
+        #echo-details {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 3rem auto;
+        }
+
+        #echo-details h2 {
+            font-size: 2rem;
+            color: #1e3a5f;
+            margin-bottom: 1rem;
+        }
+
+        #echo-details h3 {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        #echo-details p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        #echo-details ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #echo-details ul li {
+            margin-bottom: 1rem;
+        }
+
+        #echo-details code {
+            background-color: #f4f4f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 5px;
+            color: #610000;
+            font-family: monospace;
+        }
+
+        pre {
+            background-color: #f4f4f9;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        footer {
+            background-color: #6b0606;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">My Linux</div>
+        <nav>
+            <a href="index.html#home">Home</a>
+            <a href="index.html#commands">Commands</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="echo-details">
+            <h2>Echo Command</h2>
+            <p>Last Updated: 12 Mar, 2024</p>
+            <p>The <code>echo</code> command in Linux is a built-in command that allows users to display lines of text or strings that are passed as arguments. It is commonly used in shell scripts and batch files to output status text to the screen or a file.</p>
+            
+            <h3>Syntax of <code>echo</code> command in Linux:</h3>
+            <pre><code>echo [option] [string]</code></pre>
+            <p>Here:</p>
+            <ul>
+                <li><b>[options]</b> = The various options available for modifying the behavior of the <code>echo</code> command</li>
+                <li><b>[string]</b> = It is the string that we want to display.</li>
+            </ul>
+
+            <h3>Basic Usage: Displaying Text/String:</h3>
+            <p>The most straightforward usage of the echo command is to display a text or string on the terminal. To do this, you simply provide the desired text or string as an argument to the <code>echo</code> command.</p>
+            <pre><code>echo [string]</code></pre>
+            <p>Example:</p>
+            <pre><code>echo "Geeks for Geeks"</code></pre>
+
+            <h3>Options Available in <code>echo</code> command in Linux:</h3>
+            <p><b>NOTE:</b> <code>-e</code> here enables the interpretation of backslash escapes</p>
+
+            <ul>
+                <li><b>\b</b>: it removes all the spaces in between the text</li>
+                <pre><code>echo -e "Geeks \bfor \bGeeks"</code></pre>
+
+                <li><b>\c</b>: suppress trailing new line with backspace interpreter <code>-e</code> to continue without emitting new line.</li>
+                <pre><code>echo -e "Geeks \cfor Geeks"</code></pre>
+                <p>In the above example, text after \c is not printed and omitted trailing new line.</p>
+
+                <li><b>\n</b>: this option creates a new line from where it is used.</li>
+                <pre><code>echo -e "Geeks \nfor \nGeeks"</code></pre>
+
+                <li><b>\t</b>: this option is used to create horizontal tab spaces.</li>
+                <pre><code>echo -e "Geeks \tfor \tGeeks"</code></pre>
+
+                <li><b>\r</b>: carriage return with backspace interpreter <code>-e</code> to have specified carriage return in output.</li>
+                <pre><code>echo -e "Geeks \rfor Geeks"</code></pre>
+                <p>In the above example, text before \r is not printed.</p>
+
+                <li><b>\v</b>: this option is used to create vertical tab spaces.</li>
+                <pre><code>echo -e "Geeks \vfor \vGeeks"</code></pre>
+
+                <li><b>\a</b>: alert return with backspace interpreter <code>-e</code> to have sound alert.</li>
+                <pre><code>echo -e "\aGeeks for Geeks"</code></pre>
+                <p>This command when executed, it will produce an alert sound or Bell.</p>
+
+                <li><b>echo *</b>: this command will print all files/folders, similar to <code>ls</code> command.</li>
+                <pre><code>echo *</code></pre>
+
+                <li><b>-n</b>: this option is used to omit echoing trailing newline.</li>
+                <pre><code>echo -n "Geeks for Geeks"</code></pre>
+            </ul>
+
+            <h3>Redirecting <code>echo</code> Output:</h3>
+            <p>The output of the <code>echo</code> can be redirected to a file instead of displaying it on the terminal. We can achieve this by using the <code>></code> or <code>>></code> operators for output redirection.</p>
+            <pre><code>echo "Welcome GFG" > output.txt</code></pre>
+            <p>This will write the output of the echo command to the file named <code>output.txt</code>. The file will be overwritten if it already exists.</p>
+            <p>If we want to append the output in an existing file, we use <code>>></code> instead of <code>></code>.</p>
+
+            <img src="https://b1490832.smushcdn.com/1490832/wp-content/uploads/2020/02/echo_creating-files.png?lossy=2&strip=1&webp=1" alt="echo" width="500" height="300">
+
+
+            <h3>Conclusion:</h3>
+            <p>In this article, we have discussed the <code>echo</code> command in Linux, which is a powerful and versatile tool and allows users to display lines of the text or strings on the terminal. By understanding the <code>echo</code> command and experimenting with its features, we can effectively display messages, variables, or any desired text in our Linux environment.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Jibin Thomas. All rights reserved.</p>
+    </footer>
+</body>
+</html>

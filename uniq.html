@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uniq Command - Linux Commands</title>
+    <style>
+        /* General reset and body styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        /* Header styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #610000;
+            color: white;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav a {
+            margin: 0 1rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Add padding to prevent content overlap */
+        body {
+            padding-top: 70px; /* Adjust for fixed header height */
+        }
+
+        /* Main content section */
+        main {
+            padding: 3rem 2rem;
+            text-align: left;
+        }
+
+        /* Uniq details section */
+        #uniq-details {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 3rem auto;
+        }
+
+        #uniq-details h2 {
+            font-size: 2rem;
+            color: #1e3a5f;
+            margin-bottom: 1rem;
+        }
+
+        #uniq-details h3 {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        #uniq-details p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        #uniq-details ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #uniq-details ul li {
+            margin-bottom: 1rem;
+        }
+
+        #uniq-details code {
+            background-color: #f4f4f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 5px;
+            color: #610000;
+            font-family: monospace;
+        }
+
+        pre {
+            background-color: #f4f4f9;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #6b0606;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">My Linux</div>
+        <nav>
+            <a href="index.html#home">Home</a>
+            <a href="index.html#commands">Commands</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="uniq-details">
+            <h2>Uniq Command in Linux with Examples</h2>
+            <p>Last Updated: 18 Jul, 2024</p>
+            <p>The <code>uniq</code> command in Linux is a command-line utility that reports or filters out the repeated lines in a file. In simple words, <code>uniq</code> helps detect and delete adjacent duplicate lines. <code>uniq</code> filters out adjacent matching lines from the input file (which is required as an argument) and writes the filtered data to the output file.</p>
+
+            <h3>Table of Content</h3>
+            <ul>
+                <li>syntax of uniq Command</li>
+                <li>Common Options of the uniq Command</li>
+                <li>Examples of Using the `uniq` Command</li>
+                <li>How to Remove Duplicate Lines Using `uniq` Command</li>
+                <li>How to Count Duplicate Lines Using `uniq` Command in Linux</li>
+                <li>How to Display Repeated Lines Using `uniq` Command in Linux</li>
+                <li>How to Display all Duplicate Lines Using `uniq` Command in Linux</li>
+                <li>How to Display Unique Lines Using `uniq` Command in Linux</li>
+                <li>Skipping First N Characters (-s option) Using `uniq` Command in Linux</li>
+                <li>Limiting Comparison to First N Characters (-w option) Using `uniq` Command in Linux</li>
+                <li>Case-Insensitive Comparison (-i option) Using `uniq` Command in Linux</li>
+                <li>NULL Terminated Output (-z option) Using `uniq` Command in Linux</li>
+            </ul
+
+            <h3 id="syntax">Syntax of uniq Command</h3>
+            <p>The basic syntax of the <code>uniq</code> command is:</p>
+            <pre><code>uniq [OPTIONS] [INPUT_FILE [OUTPUT_FILE]]</code></pre>
+            <p>Here:</p>
+            <ul>
+                <li><code>OPTIONS</code>: Optional flags that modify the behavior of the <code>uniq</code> command.</li>
+                <li><code>INPUT_FILE</code>: The path to the input file containing the text data. If not specified, <code>uniq</code> reads from the standard input (usually the keyboard).</li>
+                <li><code>OUTPUT_FILE</code>: The path to the output file where the unique lines will be written. If not specified, <code>uniq</code> writes to the standard output (usually the terminal).</li>
+            </ul>
+
+            <h3 id="common-options">Common Options of the uniq Command</h3>
+            <ul>
+                <li><code>-c, --count</code>: Prefix lines by the number of occurrences in the input, followed by a space.</li>
+                <li><code>-d, --repeated</code>: Only output lines that are repeated in the input.</li>
+                <li><code>-i, --ignore-case</code>: Ignore differences in case when comparing lines.</li>
+                <li><code>-f, --skip-fields=N</code>: Avoid comparing the first N fields in each line.</li>
+                <li><code>-s, --skip-chars=N</code>: Avoid comparing the first N characters in each line.</li>
+                <li><code>-u, --unique</code>: Only output lines that are unique in the input.</li>
+            </ul>
+
+            <h3 id="examples">Examples of Using the <code>uniq</code> Command</h3>
+            <p>Suppose you have a text file named <code>kt.txt</code> which contains repeated lines that need to be omitted. This can simply be done with <code>uniq</code>.</p>
+            <pre><code>$ cat kt.txt
+I love music.
+I love music.
+I love music.
+
+I love music of Kartik.
+I love music of Kartik.
+
+Thanks.</code></pre>
+
+            <h3 id="remove-duplicate">How to Remove Duplicate Lines Using <code>uniq</code> Command</h3>
+            <p>To remove duplicate lines from <code>kt.txt</code>, we can use the <code>uniq</code> command:</p>
+            <pre><code>uniq kt.txt</code></pre>
+            <pre><code>remove duplicate lines
+remove duplicate lines</code></pre>
+            <p>As you can see, we just used the name of the input file in the above <code>uniq</code> example. Since we didn’t use any output file to store the produced output, the <code>uniq</code> command displayed the filtered output on the standard output with all the duplicate lines removed.</p>
+            <p><strong>Note:</strong> <code>uniq</code> isn’t able to detect the duplicate lines unless they are adjacent to each other. The content in the file must be sorted before using <code>uniq</code> or you can simply use <code>sort -u</code> instead of the <code>uniq</code> command.</p>
+
+            <h3 id="count-duplicate">How to Count Duplicate Lines Using <code>uniq</code> Command in Linux</h3>
+            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240215174905/2024-02-15_17-48.png" alt="uniq"500" height="300">
